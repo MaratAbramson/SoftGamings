@@ -181,7 +181,7 @@ h6 {
   transition: all 0.5s ease;
 }
 
-.game-card::before {
+.game-card[data-tag]::before {
   content: attr(data-tag);
   position: absolute;
   top: 15px;
@@ -203,7 +203,7 @@ h6 {
   opacity: 0;
   pointer-events: none;
 }
-.game-card::after {
+.game-card[data-group]::after {
   content: attr(data-group);
   position: absolute;
   bottom: 15px;
