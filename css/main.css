@@ -1,0 +1,552 @@
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:    "Game-card"
+Version:    1.0
+Last change:    01/04/2020 [optimization structure code]
+
+Author:         collected & compiled
+                by Marat Abramson (MaratAbramson@gmail.com);
+
+Assigned to:    page makers / FE-devs / designers;
+Primary use:    Starting new project, main CSS library;
+-------------------------------------------------------------------*/
+
+/*|01.|*/
+/* -FONTS SETUP- { */
+
+/*|01.1|*/
+/* SYSTEM FONTS { */
+/* -on/off-
+html {
+  font-family:
+    -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', 'Cantarell', 'Fira Sans', 'Droid Sans', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+}
+*/
+
+/* SYSTEM FONTS } */
+
+
+/*|01.2|*/
+/* CUSTOM FONTS { */
+
+/* -Rubik- { */
+
+/* rubik-300 - cyrillic_latin */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    url('../fonts/Rubik/rubik-v9-cyrillic_latin-300.woff2') format('woff2'),
+    url('../fonts/Rubik/rubik-v9-cyrillic_latin-300.woff') format('woff');
+}
+
+/* rubik-regular - cyrillic_latin */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('../fonts/Rubik/rubik-v9-cyrillic_latin-regular.woff2') format('woff2'),
+    url('../fonts/Rubik/rubik-v9-cyrillic_latin-regular.woff') format('woff');
+}
+
+/* rubik-500 - cyrillic_latin */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url('../fonts/Rubik/rubik-v9-cyrillic_latin-500.woff2') format('woff2'),
+    url('../fonts/Rubik/rubik-v9-cyrillic_latin-500.woff') format('woff');
+}
+
+/* rubik-700 - cyrillic_latin */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('../fonts/Rubik/rubik-v9-cyrillic_latin-700.woff2') format('woff2'),
+    url('../fonts/Rubik/rubik-v9-cyrillic_latin-700.woff') format('woff');
+}
+
+/* -Rubik- } */
+
+/* CUSTOM FONTS } */
+
+/* -FONTS SETUP- } */
+
+
+
+/*|02.|*/
+/* -SITE BASIC PROPERTIES- { */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+/*Normalize Border-box*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+body,
+button,
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Rubik", sans-serif;
+}
+
+.site {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  overflow: hidden;
+  /*-display: flex;-*/
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  /*-flex-direction: column;-*/
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  /*-justify-content: center;-*/
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  /*-align-items: center;-*/
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /**/
+  background-image: linear-gradient(0.9turn, hsl(50, 90%, 70%) 0%, hsl(50, 90%, 80%) 100%);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container {
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* -SITE BASIC PROPERTIES- } */
+
+
+
+/*|03.|*/
+/* -OBJECTS (MODULES)- { */
+
+/*game-card*/
+.game-card {
+  height: 200px;
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /**/
+  border-radius: 16px;
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease;
+}
+
+.game-card::before {
+  content: attr(data-tag);
+  position: absolute;
+  top: 15px;
+  left: 0;
+  height: 20px;
+  width: 100px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-weight: 500;
+  background-color: hsla(50, 90%, 70%, 1);
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+.game-card:hover::before {
+  content: '';
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.game-card::after {
+  content: attr(data-group);
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  height: 24px;
+  width: 120px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: hsla(50, 90%, 70%, 1);
+  font-weight: 500;
+  border: 1px solid hsla(50, 90%, 70%, 1);
+  border-radius: 4px;
+  padding: 4px;
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+.game-card:hover::after {
+  content: '';
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.game-card__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.game-card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: hsla(0, 0%, 0%, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.game-card:hover .game-card__content {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.game-card__header {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.game-card__header-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: 24px;
+  border-radius: 4px;
+  fill: hsla(50, 90%, 70%, 1);
+  transition: all 0.2s ease;
+}
+
+.game-card__header-btn:hover {
+  fill: hsla(0, 0%, 100%, 1);
+  background-color: hsla(50, 90%, 70%, 0.5);
+}
+
+.game-card__body {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.game-card__title {
+  font-size: 1.275rem;
+  font-weight: bold;
+  color: hsla(50, 90%, 70%, 1);
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.game-card__footer {
+  flex: 0 0 auto;
+}
+
+.game-card__btn-group {
+  flex-grow: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.game-card__btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+  padding: 0.4em 1em 0.3em 1em;
+  line-height: 1;
+  letter-spacing: 0.025em;
+  color: hsla(0, 0%, 0%, 1);
+  background-color: hsla(50, 90%, 70%, 1);
+  font-size: 1rem;
+  font-weight: 500;
+  border: 3px solid hsla(50, 90%, 70%, 1);
+  border-radius: 8px;
+}
+
+.game-card__btn--reverse:hover,
+.game-card__btn:hover {
+  color: hsla(0, 0%, 0%, 1);
+  background-color: hsla(50, 90%, 70%, 1);
+  border: 3px solid hsla(40, 90%, 50%, 1);
+}
+
+.game-card__btn--reverse {
+  color: hsla(50, 90%, 70%, 1);
+  background-color: transparent;
+}
+
+/* -OBJECTS (MODULES)- } */
+
+.c-event-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.c-event-card_cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.c-event-card_pic {
+  height: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.c-event-card_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 16px;
+  /**/
+  background-color: hsla(220, 50%, 35%, 0.5);
+  z-index: 1;
+}
+
+.c-event-card_header {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.c-event-card_decor {
+  position: absolute;
+  top: -0.385em;
+  left: 0;
+  color: hsla(0, 0%, 100%, 0.25);
+  font-size: 4rem;
+  font-weight: bold;
+  z-index: -1;
+}
+
+.c-event-card_title {
+  margin: 0;
+  padding: 0;
+  color: hsl(0, 0%, 100%);
+  z-index: 2;
+}
+
+.c-event-card_date {
+  font-size: 2rem;
+  font-weight: bold;
+  color: hsla(0, 0%, 100%, 0.25);
+}
+
+.c-event-card_body {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.c-event-card_desc {
+  padding: 4px 16px;
+  font-size: 1.25rem;
+  color: hsl(220, 50%, 90%);
+  background-color: hsla(220, 50%, 15%, 0.8);
+  border-left: 4px solid hsl(180, 75%, 50%);
+}
+
+.c-event-card_footer {
+  display: flex;
+}
+
+
+/*|04.|*/
+/* -MEDIA QUERIES- { */
+
+/*|04.1.|*/
+/* MOBILE-FIRST { */
+
+@media (min-width: 320px) {
+  /* width>320px */
+
+}
+
+@media (min-width: 576px) {
+  /* width>576px */
+  max-width: 300px;
+}
+
+@media (min-width: 768px) {
+  /* width>768px */
+}
+
+@media (min-width: 992px) {
+  /* width>992px */
+
+}
+
+@media (min-width: 1024px) {
+  /* width>1024px */
+
+}
+
+@media (min-width: 1152px) {
+  /* width>1152px */
+}
+
+@media (min-width: 1280px) {
+  /* width>1280px */
+
+}
+
+@media (min-width: 1366px) {
+  /* width>1366px */
+}
+
+@media (min-width: 1440px) {
+  /* width>1440px */
+
+}
+
+@media (min-width: 1600px) {
+  /* width>1600px */
+}
+
+@media (min-width: 1920px) {
+  /* width>1920px (desktops 2k)*/
+}
+
+@media (min-width: 2560px) {
+  /* width>2560px (desktops 4K-UHD)*/
+}
+
+/* MOBILE-FIRST } */
+
+
+
+/*|04.2.|*/
+/* DESKTOP-FIRST { */
+
+@media (max-width: 575.98px) {
+  /* width<576 */
+
+}
+
+@media (max-width: 767.98px) {
+  /* width<768px */
+
+}
+
+@media (max-width: 991.98px) {
+  /* width<992px */
+}
+
+@media (max-width: 1023.98px) {
+  /* width<1024px */
+}
+
+@media (max-width: 1151.98px) {
+  /* width<1152px */
+}
+
+@media (max-width: 1279.98px) {
+  /* width<1280px */
+}
+
+@media (max-width: 1365.98px) {
+  /* width<1366px */
+}
+
+@media (max-width: 1439.98px) {
+  /* width<1440px */
+}
+
+@media (max-width: 1599.98px) {
+  /* width<1600px */
+}
+
+@media (max-width: 1919.98px) {
+  /* width<1920px (desktops HD)*/
+
+}
+
+@media (max-width: 2559.98px) {
+  /* width<2560px (desktops FHD)*/
+
+}
+
+@media (max-width: 3839.98px) {
+  /* width<3840px (desktops 2K)*/
+
+}
+
+/* DESKTOP-FIRST } */
+
+/* -MEDIA QUERIES- } */
